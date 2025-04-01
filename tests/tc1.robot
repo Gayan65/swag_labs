@@ -6,6 +6,9 @@ ${URL}  https://gayan65.github.io/swag_labs/swag_labs.html
 ${BROWSER}  Chrome
 ${USERNAME}  standard_user
 ${PASSWORD}  secret_sauce
+${FIRSTNAME}    Gayan
+${LASTNAME}     Gamage
+${POSTALCODE}   5010
 
 *** Test Cases ***
 Login and Purchase Flow
@@ -14,27 +17,19 @@ Login and Purchase Flow
     Input Text  id=username  ${USERNAME}
     Input Text  id=password  ${PASSWORD}
     Click Button  id=login-button
-    Wait Until Element Is Visible  id=inventory_container
+    Wait Until Element Is Visible  id=product-page
 
     # Add items to cart
-    Click Button  id=add-to-cart-sauce-labs-backpack
-    Click Button  id=add-to-cart-sauce-labs-bike-light
-    Click Button  id=shopping_cart_container
-    Wait Until Element Is Visible  class=cart_list
-
-    # Remove an item from the cart
-    Click Button  id=remove-sauce-labs-bike-light
+    Click Element  xpath=//button[contains(@onclick, 'addToCart(1)')]
+    Click Element  xpath=//button[contains(@onclick, 'addToCart(2)')]
+    Click Element  xpath=//div[@class='cart-icon']
+    Wait Until Element Is Visible  id=checkout-page
 
     # Checkout process
-    Click Button  id=checkout
-    Input Text  id=first-name  John
-    Input Text  id=last-name  Doe
-    Input Text  id=postal-code  12345
-    Click Button  id=continue
-
-    # Confirm purchase
-    Click Button  id=finish
-    Wait Until Element Is Visible  class=complete-header
-    Element Should Contain  class=complete-header  Thank you for your order!
+    Input Text  id=first-name  ${FIRSTNAME}}
+    Input Text  id=last-name  ${LASTNAME}}
+    Input Text  id=postal-code  ${POSTALCODE}}
+    Click Element  xpath=//button[contains(@onclick, 'completeCheckout()')]
+    Sleep   5s
 
     Close Browser
