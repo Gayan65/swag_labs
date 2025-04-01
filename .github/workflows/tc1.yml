@@ -1,0 +1,26 @@
+name: Robot Framework Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          pip install robotframework
+          pip install robotframework-seleniumlibrary
+
+      - name: Run Robot Tests in Headless Mode
+        run: |
+          robot -d results --variable BROWSER:headlesschrome tests/

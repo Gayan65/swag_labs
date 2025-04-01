@@ -2,7 +2,7 @@
 Library  SeleniumLibrary
 
 *** Variables ***
-${URL}  https://gayan65.github.io/your_repo/swag_labs.html
+${URL}  https://gayan65.github.io/swag_labs/swag_labs.html
 ${BROWSER}  Chrome
 ${USERNAME}  standard_user
 ${PASSWORD}  secret_sauce
